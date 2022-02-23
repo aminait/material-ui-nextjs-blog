@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AllPostsPage = () => {
-  return <div></div>;
+  return <div>all posts</div>;
 };
 
 export default AllPostsPage;
