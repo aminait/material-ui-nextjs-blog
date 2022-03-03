@@ -16,15 +16,49 @@ import MenuItem from '@mui/material/MenuItem';
 
 const pages = [
   { name: 'Posts', link: '/posts' },
-  { name: 'Categories', link: '#' },
-  { name: 'Newsletter', link: '#' },
-  { name: 'Contact', link: '#' },
+  { name: 'Categories', link: '/categories' },
+  { name: 'Newsletter', link: '/newsletter' },
+  { name: 'Contact', link: '/contact' },
+  { name: 'Write', link: '/write' },
 ];
 const responsivePages = [
   { name: 'My Account', link: '#' },
   { name: 'Write', link: '#' },
   ...pages,
 ];
+
+const highlightStyles = {
+  position: 'relative',
+  margin: '0 0.5em',
+  padding: '0 0.2em',
+  '&:before': {
+    content: '',
+    zIndex: -1,
+    left: '-0.5em',
+    top: '0.1em',
+    borderWidth: '0.5em',
+    borderStyle: 'solid',
+    borderColor: 'orange',
+    position: 'absolute',
+    width: 'calc(100% - 0.5em)',
+    borderLeftColor: 'transparent',
+  },
+  '&:after': {
+    content: '',
+    zIndex: -1,
+    right: 0,
+    top: '0.1em',
+    borderWidth: '0.5em',
+    borderStyle: 'solid',
+    borderColor: 'orange',
+    position: 'absolute',
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+    transform: 'rotate(180deg)',
+    transformOrigin: 'center right',
+  },
+};
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,7 +80,15 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static" color="neutral" elevation="0">
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: 'white',
+        color: 'black',
+        textTransform: 'capitalize',
+      }}
+      elevation={0}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Desktop */}
@@ -60,7 +102,7 @@ const Navbar = () => {
             }}
           >
             <Link href="/" passHref>
-              <Image src="/logo.png" alt="logo" width={90} height={90} />
+              <Image src="/logo.jpg" alt="logo" width={150} height={120} />
             </Link>
           </Typography>
 
@@ -117,8 +159,9 @@ const Navbar = () => {
               display: { xs: 'flex', md: 'none', cursor: 'pointer' },
             }}
           >
+            {/* Mobile */}
             <Link href="/" passHref>
-              <Image src="/logo.png" alt="logo" width={50} height={50} />
+              <Image src="/logo.jpg" alt="logo" width={120} height={100} />
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
