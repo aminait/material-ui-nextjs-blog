@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { Grid, styled, Typography, Button } from '@mui/material';
-import { useResponsive } from '../../hooks/useResponsive';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 // const StyledImage
 
-const Hero = () => {
+const WriteHero = () => {
   const { rc } = useResponsive();
   return (
     <section>
@@ -32,7 +32,16 @@ const Hero = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={12} lg={12} xl={12}>
-              <Button variant="contained" color="secondary" size="large">
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  // backgroundColor: 'black',
+                  color: 'white',
+                  borderRadius: '50px',
+                }}
+                size="large"
+              >
                 Create a blog
               </Button>
             </Grid>
@@ -51,4 +60,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default WriteHero;
