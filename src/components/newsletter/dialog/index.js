@@ -15,7 +15,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const NewsletterDialog = (props) => {
   const { open, handleClose } = props;
-  console.log('NewsletterDialog -> open', open);
   return (
     <Dialog open={open} TransitionComponent={Transition}>
       {/* <DialogTitle>Subscribe</DialogTitle> */}

@@ -10,6 +10,7 @@ import ReadMore from '../../components/post/read-more';
 import Comments from '../../components/post/comments';
 import NoNavBar from '../../layout/noNavLayout';
 import Navbar from '../../layout/navbar';
+// import Head from 'next';
 const PostDetailsPage = () => {
   // useDocumentTitle('Guide - A');
   return (
@@ -48,14 +49,14 @@ const PostDetailsPage = () => {
         </Box>
         <Grid
           item
-          md={7}
-          lg={7}
-          xl={7}
+          md={5}
+          lg={5}
+          xl={5}
           sx={{
             marginLeft: '5vw',
           }}
         >
-          <PostDetails />
+          <PostDetails content="# hi" />
           <Reactions />
           <Comments />
           <ReadMore />
