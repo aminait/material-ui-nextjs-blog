@@ -9,9 +9,11 @@ import TabItems from '../ui/tabs';
 import posts from '../constants/mock/posts';
 import { useDocumentTitle } from '../hooks';
 import { getFeaturedPosts } from '../lib/posts-util';
+import Head from 'next/head';
+import Hero from '../components/hero';
 
 const HomePage = (props) => {
-  useDocumentTitle('Guide - All Posts');
+  // useDocumentTitle('Guide - All Posts');
   const { featuredPosts } = props;
   console.log('HomePage -> featuredPosts', featuredPosts);
   const [open, setOpen] = useState(false);
@@ -30,7 +32,15 @@ const HomePage = (props) => {
     };
   }, []);
   return (
-    <div>
+    <>
+      <Head>
+        <title>Material UI - Next.js Blog </title>
+        <meta
+          name="description"
+          content="Material UI and Next.js blog template"
+        />
+      </Head>
+      <Hero />
       <Grid container sx={{ height: '100vh' }}>
         <Grid>
           <TabItems
@@ -62,7 +72,7 @@ const HomePage = (props) => {
         {/* </Stack>
         </Grid>  */}
       </Grid>
-    </div>
+    </>
   );
 };
 

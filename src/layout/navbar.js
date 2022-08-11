@@ -15,18 +15,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import SearchOverlay from './search-overlay';
 
 const pages = [
   { name: 'Posts', link: '/posts' },
-  { name: 'Categories', link: '/categories' },
+  { name: 'Tags', link: '/tags' },
   { name: 'Newsletter', link: '/newsletter' },
   { name: 'Contact', link: '/contact' },
-  { name: 'Write', link: '/write' },
-];
-const responsivePages = [
-  { name: 'My Account', link: '#' },
-  { name: 'Write', link: '#' },
-  ...pages,
 ];
 
 const highlightStyles = {
@@ -66,6 +61,9 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const [openSearchDrawer, setOpenSearchDrawer] = React.useState(false);
+  console.log('Navbar -> openSearchDrawer', openSearchDrawer);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -79,6 +77,10 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleSearchClick = () => {
+    setOpenSearchDrawer(true);
   };
 
   return (
@@ -137,7 +139,7 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {responsivePages.map((page) => (
+              {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography
                     sx={{
@@ -183,7 +185,11 @@ const Navbar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {openSearchDrawer && (
+            <SearchOverlay setOpenSearchDrawer={setOpenSearchDrawer} />
+          )}
+
+          <Box sx={{ flexGrow: 0 }} onClick={handleSearchClick}>
             <Tooltip title="Search for posts">
               <IconButton
                 size="large"
