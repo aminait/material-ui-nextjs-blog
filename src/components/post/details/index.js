@@ -1,43 +1,65 @@
 import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 
 const PostDetails = (props) => {
-  const { content } = props;
+  const { post } = props;
+  console.log('PostDetails -> post', post);
+
+  const customComponents = {
+    img(image) {
+      return (
+        <Image
+          src={`/images/posts/${post.slug}/${image.src}`}
+          alt={image.alt}
+          width={600}
+          height={300}
+        />
+      );
+    },
+    p(paragraph) {
+      const { node } = paragraph;
+      if (node.children[0].type === 'image') {
+        const image = node.children[0];
+        return (
+          <div>
+            <Image
+              src={`/images/posts/${post.slug}/${image.url}`}
+              alt={image.alt}
+              width={600}
+              height={300}
+            />
+          </div>
+        );
+      }
+      return <p>{paragraph.children}</p>;
+    },
+
+    code(code) {
+      const { className, children } = code;
+      const language = className.split('-')[1];
+      return (
+        <SyntaxHighlighter
+          style={atomDark}
+          language={language}
+          // eslint-disable-next-line react/no-children-prop
+          children={children}
+        />
+      );
+    },
+  };
   return (
     <Box alignItems="space-between">
       <article>
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <ReactMarkdown components={customComponents}>
+          {post.content}
+        </ReactMarkdown>
       </article>
-      {/* <Typography variant="p" gutterBottom>
-        {
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet.."'
-        }
-      </Typography>
-      <Typography variant="h4" gutterBottom>
-        1. Minimal boilerplate setup
-      </Typography>
-      <Typography variant="p" gutterBottom>
-        {
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet.."'
-        }
-      </Typography>
-      <Typography variant="h4" gutterBottom>
-        2. Development Environment
-      </Typography>
-      <Typography variant="p">
-        {
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet.."'
-        }
-      </Typography>
-      <Typography variant="h4" gutterBottom>
-        3. Deployment Pipline
-      </Typography>
-      <Typography variant="p" gutterBottom>
-        {
-          'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. '
-        }
-      </Typography> */}
     </Box>
   );
 };

@@ -10,8 +10,11 @@ import ReadMore from '../../components/post/read-more';
 import Comments from '../../components/post/comments';
 import NoNavBar from '../../layout/noNavLayout';
 import Navbar from '../../layout/navbar';
+import { convertToSlug } from '../../lib/slug';
+import { useRouter } from 'next/router';
 // import Head from 'next';
-const PostDetailsPage = () => {
+import { getPostData, getAllPosts } from '../../lib/posts-util';
+const PostDetailsPage = (props) => {
   // useDocumentTitle('Guide - A');
   return (
     <div>
@@ -56,7 +59,7 @@ const PostDetailsPage = () => {
             marginLeft: '5vw',
           }}
         >
-          <PostDetails content="# hi" />
+          <PostDetails post={props.post} />
           <Reactions />
           <Comments />
           <ReadMore />
@@ -95,12 +98,39 @@ const PostDetailsPage = () => {
     </div>
   );
 };
-PostDetailsPage.getLayout = (page) => (
-  <Fragment>
-    <Navbar />
-    <PostDetailsHeader />
-    <NoNavBar>{page}</NoNavBar>
-  </Fragment>
-);
+
+export function getStaticProps(context) {
+  const { params } = context;
+  const { slug } = params;
+
+  const postData = getPostData(slug);
+
+  return {
+    props: {
+      post: postData,
+    },
+    revalidate: 600,
+  };
+}
+
+export async function getStaticPaths() {
+  const posts = getAllPosts();
+
+  const paths = posts.map((post) => ({
+    params: { slug: convertToSlug(post.title) },
+  }));
+
+  return { paths, fallback: false };
+}
+
+PostDetailsPage.getLayout = (page) => {
+  return (
+    <Fragment>
+      <Navbar />
+      <PostDetailsHeader />
+      <NoNavBar>{page}</NoNavBar>
+    </Fragment>
+  );
+};
 
 export default PostDetailsPage;

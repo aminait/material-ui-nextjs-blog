@@ -9,8 +9,8 @@ const NavLayout = ({ children }) => {
   return (
     <>
       <CssBaseline />
-      <Navbar />
 
+      <Navbar />
       <Container maxWidth="lg" direction="column">
         <Box
           sx={{

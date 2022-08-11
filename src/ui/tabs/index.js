@@ -41,9 +41,13 @@ function a11yProps(index) {
   };
 }
 
+const tabs = ['Featured', 'Popular', 'Trending'];
+
 const TabItems = (props) => {
-  const { posts, hideTitles } = props;
+  const { hideTitles, featuredPosts, popularPosts, trendingPosts } = props;
+  console.log('TabItems -> featuredPosts', featuredPosts);
   const [value, setValue] = React.useState(0);
+  console.log('TabItems -> value', value);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -58,40 +62,48 @@ const TabItems = (props) => {
           display: hideTitles ? 'none' : '',
         }}
       >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          {posts.map((post, index) => {
+        <Tabs value={value} onChange={handleChange}>
+          {tabs.map((tab, index) => {
             return (
-              <Tab
-                label={post.type}
-                key={`${post.type}-${index}`}
-                {...a11yProps(index)}
-              />
+              <Tab label={tab} key={`${tab}-${index}`} {...a11yProps(index)} />
             );
           })}
-          {/* <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} /> */}
         </Tabs>
       </Box>
-      {posts.map((post, index) => {
-        return (
-          <TabPanel value={value} key={index} index={index}>
-            <Grid container spacing={2} direction="row">
-              {post.data.map((details, i) => {
-                return (
-                  <Grid item key={index} xs={12} sm={6} md={4}>
-                    <CardPost key={i} details={details} />
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </TabPanel>
-        );
-      })}
+
+      <TabPanel value={value} key={0} index={0}>
+        <Grid container spacing={2} direction="row">
+          {featuredPosts.map((details, i) => {
+            return (
+              <Grid item key={i} xs={12} sm={6} md={4}>
+                <CardPost key={i} details={details} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} key={1} index={1}>
+        <Grid container spacing={2} direction="row">
+          {popularPosts.map((details, i) => {
+            return (
+              <Grid item key={i} xs={12} sm={6} md={4}>
+                <CardPost key={i} details={details} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} key={2} index={2}>
+        <Grid container spacing={2} direction="row">
+          {trendingPosts.map((details, i) => {
+            return (
+              <Grid item key={i} xs={12} sm={6} md={4}>
+                <CardPost key={i} details={details} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </TabPanel>
     </Box>
   );
 };

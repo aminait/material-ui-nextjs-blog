@@ -10,33 +10,26 @@ import {
 } from '@mui/material';
 import NextLink from 'next/link';
 import { Link } from '@mui/material';
+import { convertToSlug } from '../../lib/slug';
 
 const CardPost = (props) => {
   const { details } = props;
-  const { title, tags, author, content, subtitle, picture, index } = details;
+  const { title, tags, author, content, excerpt, picture } = details;
 
-  const convertToSlug = (title) => {
-    return title
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '');
-  };
   const hey = convertToSlug(title);
   console.log(hey);
   return (
     <Card
       sx={{
         height: '100%',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         transition: 'transform 0.15s ease-in-out',
         '&:hover': { transform: 'scale3d(1.02, 1.02, 1)', cursor: 'pointer' },
       }}
     >
-      <NextLink
-        href={`/posts/i=${index}&title=${convertToSlug(title)}`}
-        passHref
-      >
+      <NextLink href={`/posts/${convertToSlug(title)}`} passHref>
         <div style={{ position: 'relative' }}>
           <CardMedia
             component="img"
@@ -71,16 +64,16 @@ const CardPost = (props) => {
             >
               {title}
             </Typography>
-            <Typography>{subtitle}</Typography>
             <Divider flexItem sx={{ backgroundColor: 'white' }} />
-            <Typography>By {author}</Typography>
+
+            <Typography>{excerpt}</Typography>
           </div>
         </div>
         {/* <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography>{subtitle}</Typography>
+          <Typography>{excerpt}</Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="secondary">

@@ -13,6 +13,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 
 const pages = [
   { name: 'Posts', link: '/posts' },
@@ -187,11 +189,25 @@ const Navbar = () => {
                 size="large"
                 aria-label="search icon"
                 aria-controls="search-appbar"
-                aria-haspopup="true"
                 // onClick={handleOpenNavMenu}
                 color="inherit"
               >
-                <SearchIcon sx={{ height: 35, width: 35 }} />
+                <SearchIcon sx={{ height: 25, width: 25 }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Switch theme">
+              <IconButton
+                size="large"
+                aria-label="switch theme buttom"
+                aria-controls="switch-theme"
+                // onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                {true ? (
+                  <DarkModeOutlinedIcon sx={{ height: 25, width: 25 }} />
+                ) : (
+                  <LightModeOutlinedIcon sx={{ height: 25, width: 25 }} />
+                )}
               </IconButton>
             </Tooltip>
             {/* <Tooltip title="Open settings">

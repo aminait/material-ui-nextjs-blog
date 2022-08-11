@@ -8,8 +8,12 @@ import NewsletterDialog from '../components/newsletter/dialog';
 import TabItems from '../ui/tabs';
 import posts from '../constants/mock/posts';
 import { useDocumentTitle } from '../hooks';
-const HomePage = () => {
+import { getFeaturedPosts } from '../lib/posts-util';
+
+const HomePage = (props) => {
   useDocumentTitle('Guide - All Posts');
+  const { featuredPosts } = props;
+  console.log('HomePage -> featuredPosts', featuredPosts);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -29,9 +33,14 @@ const HomePage = () => {
     <div>
       <Grid container sx={{ height: '100vh' }}>
         <Grid>
-          <TabItems posts={posts} hideTitles={true} />
+          <TabItems
+            featuredPosts={featuredPosts}
+            popularPosts={posts}
+            trendingPosts={posts}
+            hideTitles={false}
+          />
         </Grid>
-        <NewsletterDialog open={open} handleClose={handleClose} />
+        {/* <NewsletterDialog open={open} handleClose={handleClose} /> */}
         {/* <Grid item>
           <Stack
             direction="column"
@@ -56,6 +65,17 @@ const HomePage = () => {
     </div>
   );
 };
+
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts();
+  console.log('getStaticProps -> featuredPosts', featuredPosts);
+
+  return {
+    props: {
+      featuredPosts: featuredPosts,
+    },
+  };
+}
 
 HomePage.getLayout = (page) => <NavLayout>{page}</NavLayout>;
 
