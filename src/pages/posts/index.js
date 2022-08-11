@@ -1,24 +1,27 @@
 import React from 'react';
 import NavLayout from '../../layout/navLayout';
 import { getAllPosts } from '../../lib/posts-util';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Divider, Stack } from '@mui/material';
 import CardPost from '../../ui/cards';
+import PostsList from '../../components/posts/posts-list';
 
 const PostsPage = (props) => {
   const { posts } = props;
   console.log('PostsPage -> posts', posts);
   return (
     <>
-      <Typography variant="h2">All Posts</Typography>
-      <Grid container spacing={2} direction="row">
-        {posts.map((details, i) => {
-          return (
-            <Grid item key={i} xs={12} sm={6} md={4}>
-              <CardPost key={i} details={details} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Stack direction="column">
+        <Typography variant="h2" gutterBottom>
+          All Posts
+        </Typography>
+        <Typography variant="p">Collection of all the posts</Typography>
+      </Stack>
+      <Divider
+        variant="middle"
+        style={{ width: '100%' }}
+        sx={{ margin: '2rem' }}
+      />
+      <PostsList posts={posts} />
     </>
   );
 };

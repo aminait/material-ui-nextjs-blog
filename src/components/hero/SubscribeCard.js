@@ -30,8 +30,8 @@ export default function SubsribeCard() {
         xs={12}
         component={Paper}
         elevation={1}
-        square
-        sx={{ backgroundColor: '#f2fafa' }}
+        // square
+        sx={{ backgroundColor: '#f2fafa', color: 'black' }}
       >
         <Box
           sx={{
@@ -50,6 +50,7 @@ export default function SubsribeCard() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
+
             // sx={{ mt: 1 }}
           >
             <TextField
@@ -62,6 +63,12 @@ export default function SubsribeCard() {
               placeholder="Enter Your Email"
               autoComplete="email"
               autoFocus
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'black',
+                  borderColor: 'red',
+                },
+              }}
             />
 
             <Button

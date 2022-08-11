@@ -35,3 +35,16 @@ export function getFeaturedPosts() {
   const featuredPosts = allPosts.filter((post) => post.isFeatured);
   return featuredPosts;
 }
+
+export function getAllTags() {
+  const allPosts = getAllPosts();
+  const tagCounts = {};
+
+  for (const post of allPosts) {
+    for (const tag of post.tags) {
+      tagCounts[tag] = tagCounts[tag] ? tagCounts[tag] + 1 : 1;
+    }
+  }
+
+  return tagCounts;
+}

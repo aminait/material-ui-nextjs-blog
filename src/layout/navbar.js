@@ -21,7 +21,8 @@ import { ThemeContext } from '../context/ThemeContext';
 const pages = [
   { name: 'Posts', link: '/posts' },
   { name: 'Tags', link: '/tags' },
-  { name: 'Newsletter', link: '/newsletter' },
+  { name: 'About', link: '/about' },
+  // { name: 'Newsletter', link: '/newsletter' },
   { name: 'Contact', link: '/contact' },
 ];
 
@@ -106,7 +107,7 @@ const Navbar = () => {
       position="static"
       sx={{
         backgroundColor: 'transparent',
-        color: 'black',
+        color: theme === 'light' ? 'black' : 'white',
         textTransform: 'capitalize',
       }}
       elevation={0}
@@ -124,7 +125,12 @@ const Navbar = () => {
             }}
           >
             <Link href="/" passHref>
-              <Image src="/logo.jpg" alt="logo" width={150} height={120} />
+              <Image
+                src={theme === 'light' ? '/logo.jpg' : '/logo-white.png'}
+                alt="logo"
+                width={150}
+                height={120}
+              />
             </Link>
           </Typography>
 
@@ -183,7 +189,12 @@ const Navbar = () => {
           >
             {/* Mobile */}
             <Link href="/" passHref>
-              <Image src="/logo.jpg" alt="logo" width={120} height={100} />
+              <Image
+                src={theme === 'light' ? '/logo.jpg' : '/logo-white.png'}
+                alt="logo"
+                width={120}
+                height={100}
+              />
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -195,7 +206,8 @@ const Navbar = () => {
                 sx={{
                   my: 2,
                   display: 'block',
-                  color: 'black',
+                  color: theme === 'light' ? 'black' : 'white',
+                  // color: 'black',
                 }}
               >
                 {page.name}
@@ -229,7 +241,7 @@ const Navbar = () => {
                 color="inherit"
                 onClick={handleClickMode}
               >
-                {true ? (
+                {theme === 'light' ? (
                   <DarkModeOutlinedIcon sx={{ height: 25, width: 25 }} />
                 ) : (
                   <LightModeOutlinedIcon sx={{ height: 25, width: 25 }} />

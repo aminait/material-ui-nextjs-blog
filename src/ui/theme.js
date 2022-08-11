@@ -78,6 +78,7 @@ export const darkThemeOptions = {
 
 export default function BaseTheme(props) {
   const { theme, setTheme } = React.useContext(ThemeContext);
+  // const defaultTheme = localStorage.getItem('theme') || 'light' || theme;
   const lightTheme = createTheme(lightThemeOptions);
   const darkTheme = createTheme(darkThemeOptions);
 

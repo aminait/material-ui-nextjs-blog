@@ -14,10 +14,15 @@ import { convertToSlug } from '../../lib/slug';
 import { useRouter } from 'next/router';
 // import Head from 'next';
 import { getPostData, getAllPosts } from '../../lib/posts-util';
+import Head from 'next/head';
 const PostDetailsPage = (props) => {
   // useDocumentTitle('Guide - A');
   return (
-    <div>
+    <>
+      <Head>
+        <title>{props.post.title}</title>
+        <meta name="description" content={props.post.exerpt} />
+      </Head>
       <Grid container sx={{ height: '100vh' }} direction="row">
         <Box display={{ sm: 'none', md: 'flex' }}>
           <Grid
@@ -95,7 +100,7 @@ const PostDetailsPage = (props) => {
         </Box>
         {/* </Grid> */}
       </Grid>
-    </div>
+    </>
   );
 };
 
