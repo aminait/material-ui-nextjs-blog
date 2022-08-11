@@ -19,6 +19,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import BottomAppBar from './bottomBar';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -42,6 +43,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { theme } = React.useContext(ThemeContext);
 
   const [liked, setLiked] = React.useState(false);
   const [bookmarked, setBookmarked] = React.useState(false);
@@ -83,7 +85,11 @@ export default function PrimarySearchAppBar() {
         <AppBar
           position="static"
           elevation={0}
-          sx={{ width: '50px', backgroundColor: '#fff', color: '#000' }}
+          sx={{
+            width: '50px',
+            backgroundColor: 'transparent',
+            color: theme === 'light' ? 'black' : 'white',
+          }}
         >
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Stack direction="column">
@@ -94,7 +100,7 @@ export default function PrimarySearchAppBar() {
                 onClick={handleClickLike}
               >
                 {liked ? (
-                  <FavoriteIcon color="secondary" />
+                  <FavoriteIcon color="primary" />
                 ) : (
                   <FavoriteBorderIcon />
                 )}
@@ -106,7 +112,7 @@ export default function PrimarySearchAppBar() {
                 onClick={handleClickBookmark}
               >
                 {bookmarked ? (
-                  <BookmarkIcon color="secondary" />
+                  <BookmarkIcon color="primary" />
                 ) : (
                   <BookmarkBorderIcon />
                 )}

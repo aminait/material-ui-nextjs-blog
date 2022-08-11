@@ -16,6 +16,11 @@ export default function TagsList({ tags }) {
       {Object.entries(tags).map((tag, i) => (
         <NextLink href={`/tags/${convertToSlug(tag[0])}`} passHref key={i}>
           <Chip
+            sx={{
+              '& .MuiChip-root': {
+                borderRadius: '2px',
+              },
+            }}
             label={`${tag[0]}`}
             onClick={handleClick}
             avatar={<Avatar>{tag[1]}</Avatar>}

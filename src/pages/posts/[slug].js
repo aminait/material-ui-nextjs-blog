@@ -57,9 +57,9 @@ const PostDetailsPage = (props) => {
         </Box>
         <Grid
           item
-          md={5}
-          lg={5}
-          xl={5}
+          md={7}
+          lg={7}
+          xl={7}
           sx={{
             marginLeft: '5vw',
           }}
@@ -90,11 +90,10 @@ const PostDetailsPage = (props) => {
               marginLeft: '20px',
               // position: 'fixed',
             }}
-            md={3}
-            lg={3}
-            xl={3}
+            md={2}
+            lg={2}
+            xl={2}
           >
-            <AuthorSideCard />
             <RelatedPosts />
           </Stack>
         </Box>

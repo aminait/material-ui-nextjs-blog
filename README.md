@@ -1,31 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Material UI + Next.js Blog Template
 
-## Getting Started
+<p align="center">
+<a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/mui-logo.svg" alt="MUI logo"></a>
+<a href="https://nextjs.org/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/nextjs-logo.svg" alt="Next.js logo"></a>
+</p>
 
-First, run the development server:
+## Starter Blog
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This is a [Next.js](https://nextjs.org/), [Material UI](https://mui.com/) blogging starter template, inspired from [this](https://github.com/timlrx/tailwind-nextjs-starter-blog) repo and [this](https://github.com/mschwarzmueller/nextjs-course-code) course content.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+    git clone https://github.com/aminait/material-ui-nextjs.git
+    cd material-ui-nextjs
+    npm i
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## How to Run
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Blog
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-Cloud firestore
-Next.js
-Material UI
+    npm run dev
