@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import SearchOverlay from './search-overlay';
+import { ThemeContext } from '../context/ThemeContext';
 
 const pages = [
   { name: 'Posts', link: '/posts' },
@@ -63,6 +64,7 @@ const Navbar = () => {
 
   const [openSearchDrawer, setOpenSearchDrawer] = React.useState(false);
   console.log('Navbar -> openSearchDrawer', openSearchDrawer);
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -83,11 +85,27 @@ const Navbar = () => {
     setOpenSearchDrawer(true);
   };
 
+  const handleClickMode = () => {
+    // console.log('hiiiiiiii');
+    // const theme = localStorage.theme;
+    // console.log('handleClickMode -> theme', theme);
+    // if (theme === 'dark') {
+    //   localStorage.setItem('theme', 'light');
+    // } else {
+    //   localStorage.setItem('theme', 'dark');
+    // }
+    if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  };
+
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         color: 'black',
         textTransform: 'capitalize',
       }}
@@ -189,7 +207,7 @@ const Navbar = () => {
             <SearchOverlay setOpenSearchDrawer={setOpenSearchDrawer} />
           )}
 
-          <Box sx={{ flexGrow: 0 }} onClick={handleSearchClick}>
+          <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Search for posts">
               <IconButton
                 size="large"
@@ -197,6 +215,7 @@ const Navbar = () => {
                 aria-controls="search-appbar"
                 // onClick={handleOpenNavMenu}
                 color="inherit"
+                onClick={handleSearchClick}
               >
                 <SearchIcon sx={{ height: 25, width: 25 }} />
               </IconButton>
@@ -208,6 +227,7 @@ const Navbar = () => {
                 aria-controls="switch-theme"
                 // onClick={handleOpenNavMenu}
                 color="inherit"
+                onClick={handleClickMode}
               >
                 {true ? (
                   <DarkModeOutlinedIcon sx={{ height: 25, width: 25 }} />
