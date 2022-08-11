@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/mui-logo.svg" alt="MUI logo"></a>
-<a href="https://nextjs.org/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/nextjs-logo.svg" alt="Next.js logo"></a>
+<a href="https://nextjs.org/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/nextjs-logo.png" alt="Next.js logo"></a>
 </p>
 
 ## Starter Blog
