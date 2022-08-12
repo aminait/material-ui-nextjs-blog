@@ -7,9 +7,7 @@ const AboutPage = () => {
   return (
     <>
       <Stack direction="column">
-        <Typography variant="h2" gutterBottom>
-          About
-        </Typography>
+        <Typography variant="h2">About</Typography>
       </Stack>
       <Divider
         variant="middle"

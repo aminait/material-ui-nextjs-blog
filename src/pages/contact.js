@@ -60,9 +60,7 @@ const ContactPage = () => {
   return (
     <>
       <Stack direction="column">
-        <Typography variant="h2" gutterBottom>
-          Contact
-        </Typography>
+        <Typography variant="h2">Contact</Typography>
       </Stack>
       <Divider
         variant="middle"
@@ -88,9 +86,9 @@ const ContactPage = () => {
               alignItems: 'center',
             }}
           >
-            <Typography component="h1" variant="h5">
+            {/* <Typography component="h1" variant="h5">
               Let us talk
-            </Typography>
+            </Typography> */}
 
             <Box
               component="form"

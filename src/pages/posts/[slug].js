@@ -16,7 +16,6 @@ import { useRouter } from 'next/router';
 import { getPostData, getAllPosts } from '../../lib/posts-util';
 import Head from 'next/head';
 const PostDetailsPage = (props) => {
-  // useDocumentTitle('Guide - A');
   return (
     <>
       <Head>

@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 const BlurryDialog = styled(Dialog)(({ theme }) => ({
   backdropFilter: 'blur(5px)',
@@ -17,10 +18,22 @@ const BlurryDialog = styled(Dialog)(({ theme }) => ({
 
 export default function SearchOverlay({ setOpenSearchDrawer }) {
   const [open, setOpen] = React.useState(true);
+  const [search, setSearch] = React.useState('');
+  console.log('SearchOverlay -> search', search);
+  const router = useRouter();
 
   const handleClose = () => {
     setOpen(false);
     setOpenSearchDrawer(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode == 13) {
+      console.log('value', e.target.value);
+      // put the login here
+      router.push(`/posts?search=${search}`);
+      handleClose();
+    }
   };
 
   return (
@@ -53,26 +66,12 @@ export default function SearchOverlay({ setOpenSearchDrawer }) {
               </InputAdornment>
             ),
           }}
+          onKeyDown={handleKeyDown}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
         />
-        {/* <DialogContent>
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We
-          will send updates occasionally.
-        </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="standard"
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Subscribe</Button>
-      </DialogActions> */}
       </BlurryDialog>
     </>
   );
