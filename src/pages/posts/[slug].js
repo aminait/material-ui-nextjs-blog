@@ -13,7 +13,11 @@ import Navbar from '../../layout/navbar';
 import { convertToSlug } from '../../lib/slug';
 import { useRouter } from 'next/router';
 // import Head from 'next';
-import { getPostData, getAllPosts } from '../../lib/posts-util';
+import {
+  getPostData,
+  getAllPosts,
+  getPrevNextPost,
+} from '../../lib/posts-util';
 import Head from 'next/head';
 const PostDetailsPage = (props) => {
   return (
@@ -64,9 +68,6 @@ const PostDetailsPage = (props) => {
           }}
         >
           <PostDetails post={props.post} />
-          <Reactions />
-          <Comments />
-          <ReadMore />
         </Grid>
         {/* <Grid item> */}
         <Box display={{ sm: 'none', md: 'flex' }}>
@@ -93,7 +94,7 @@ const PostDetailsPage = (props) => {
             lg={2}
             xl={2}
           >
-            <RelatedPosts />
+            <RelatedPosts relatedPosts={props.relatedPosts} />
           </Stack>
         </Box>
         {/* </Grid> */}
@@ -107,10 +108,12 @@ export function getStaticProps(context) {
   const { slug } = params;
 
   const postData = getPostData(slug);
+  const relatedPosts = getPrevNextPost(postData);
 
   return {
     props: {
       post: postData,
+      relatedPosts: relatedPosts,
     },
     revalidate: 600,
   };

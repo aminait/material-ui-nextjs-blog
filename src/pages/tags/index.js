@@ -2,9 +2,9 @@ import React from 'react';
 import NavLayout from '../../layout/navLayout';
 import { getAllTags } from '../../lib/posts-util';
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import TagsList from '../../components/tags/tags-list';
-import { Typography, Divider, CssBaseline } from '@mui/material';
+import { Typography, Divider, Box, CssBaseline } from '@mui/material';
 // import CssBaseline from '@mui/material';
 
 const TagsPage = (props) => {
@@ -12,20 +12,27 @@ const TagsPage = (props) => {
   console.log('TagsPage -> tagCount', Object.entries(tagCount));
   return (
     <>
-      <CssBaseline />
-      <Stack
+      {/* <CssBaseline /> */}
+      <Typography variant="h2" gutterBottom>
+        Tags
+      </Typography>
+      <Grid
+        container
         direction="row"
         spacing={3}
         alignItems="center"
         justifyContent="center"
         display="flex"
-        maxHeight={'50vh'}
-        sx={{ padding: '10rem' }}
+        sx={{ margin: 'auto' }}
       >
-        <Typography variant="h2">Tags</Typography>
-        <Divider orientation="vertical" />
-        <TagsList tags={tagCount} />
-      </Stack>
+        {/* <Box > */}
+
+        <Divider style={{ width: '100%' }} />
+        {/* </Box> */}
+        <Grid item xs={12} sm={12} md={5} lg={5}>
+          <TagsList tags={tagCount} />
+        </Grid>
+      </Grid>
     </>
   );
 };

@@ -17,7 +17,9 @@ import {
 import { LinkedIn, Facebook, Twitter } from '@mui/icons-material';
 import PostListItem from './postListItem';
 
-const RelatedPosts = () => {
+const RelatedPosts = ({ relatedPosts }) => {
+  console.log('RelatedPosts -> relatedPosts', relatedPosts);
+  const { prev, next } = relatedPosts;
   return (
     <Grid container justifyContent="flex-end">
       <Paper>
@@ -32,12 +34,19 @@ const RelatedPosts = () => {
           }}
         >
           <CardContent sx={{ flexGrow: 1 }}>
-            <Typography variant="body1">More by author</Typography>
-
             <Stack direction="column">
-              <PostListItem />
-              <PostListItem />
-              <PostListItem />
+              {prev && (
+                <>
+                  <Typography variant="caption">Previous Post</Typography>
+                  <PostListItem post={prev} />
+                </>
+              )}
+              {next && (
+                <>
+                  <Typography variant="caption">Next Post</Typography>
+                  <PostListItem post={next} />
+                </>
+              )}
             </Stack>
           </CardContent>
         </Card>

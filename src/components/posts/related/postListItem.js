@@ -28,23 +28,29 @@ const variants = {
 };
 const PostListItem = (props) => {
   const {
-    image = 'https://source.unsplash.com/random',
+    picture = 'https://source.unsplash.com/random',
     title = 'Title',
-    preview = 'Preview',
+    excerpt = 'Preview',
     date = 'Feb 12',
     author = 'First Last',
     variant = 'preview',
-  } = props;
-  const { imgWidth, imgHeight, isPreview } = variants[variant] || 'preview';
-  const subtitle = isPreview ? preview : `${author} - ${date}`;
+    slug,
+  } = props.post;
+  const imagePath = `/images/posts/${slug}/${picture}`;
   return (
     <div>
       <Grid container direction="row">
         <ListItem button>
-          <Image src={image} alt="random" width={imgWidth} height={imgHeight} />
+          <Image
+            src={picture ? imagePath : ''}
+            width={70}
+            height={70}
+            alt=""
+            sx={{ margin: 0, padding: 0 }}
+          />
           <ListItemText
             primary={title}
-            secondary={subtitle}
+            secondary={`${excerpt.split(' ').slice(0, 5).join(' ')}...`}
             sx={{ marginLeft: '10px' }}
           />
         </ListItem>

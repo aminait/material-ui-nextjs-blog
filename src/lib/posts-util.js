@@ -48,3 +48,19 @@ export function getAllTags() {
 
   return tagCounts;
 }
+
+export function getPrevNextPost(post) {
+  const allPosts = getAllPosts();
+  const lastIndex = allPosts.length - 1;
+
+  const index = allPosts.findIndex((p) => p.title === post.title);
+  console.log('getPrevNextPost -> index', index);
+
+  console.log('getPrevNextPost -> lastIndex', lastIndex);
+  const response = {
+    prev: index === 0 ? null : allPosts[index - 1],
+    next: index === lastIndex ? null : allPosts[index + 1],
+  };
+
+  return response;
+}
