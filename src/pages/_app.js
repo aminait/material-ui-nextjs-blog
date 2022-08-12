@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { lightTheme, darkTheme } from '../ui/theme';
 import BaseTheme from '../ui/theme';
 import { ThemeContext } from '../context/ThemeContext';
+import '../../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);

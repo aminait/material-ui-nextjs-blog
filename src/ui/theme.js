@@ -7,6 +7,7 @@ import {
   responsiveFontSizes,
 } from '@mui/material/styles';
 import { ThemeContext } from '../context/ThemeContext';
+
 const options = {
   primary: {
     // main: '#66bb6a',
@@ -45,6 +46,7 @@ const common = {
       // 'BlinkMacSystemFont',
       // '"Segoe UI"',
       // 'Arial',
+      'WhyteBlack',
       'sans-serif',
       // '"Apple Color Emoji"',
       // '"Segoe UI Emoji"',

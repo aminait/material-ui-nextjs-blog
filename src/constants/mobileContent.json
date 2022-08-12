@@ -2,5 +2,9 @@
   "hero": {
     "title": "Create and read blogs with Litspace",
     "subtitle": "Get started for free"
+  },
+  "posts": {
+    "title": "All Posts",
+    "subtitle": "Collection of all posts written"
   }
 }

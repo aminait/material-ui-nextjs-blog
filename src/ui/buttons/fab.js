@@ -33,8 +33,8 @@ const FloatingActionButton = () => {
         sx={{
           margin: 0,
           top: 'auto',
-          right: 20,
-          bottom: 20,
+          right: 40,
+          bottom: 60,
           left: 'auto',
           position: 'fixed',
           //   background: 'linear-gradient(to right bottom, #000000, #8e24aa)',

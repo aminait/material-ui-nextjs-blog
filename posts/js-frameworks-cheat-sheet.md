@@ -1,10 +1,10 @@
 ---
-title: 'Getting Started with NextJS'
+title: 'JS Frameworks Cheat Sheet'
 date: '2022-10-16'
-picture: 'getting-started-nextjs.png'
+picture: 'cheat-sheet.png'
 excerpt: NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.
 isFeatured: true
-tags: ['next-js', 'guide']
+tags: ['javascript']
 ---
 
 NextJS is a **framework for ReactJS**.

@@ -14,7 +14,7 @@ export default function AboutSection() {
       >
         <Avatar
           alt="Remy Sharp"
-          src="/avatar.jpg"
+          src="/avatar.svg"
           sx={{ width: 190, height: 200 }}
         />
         <Typography component="h3" variant="p">

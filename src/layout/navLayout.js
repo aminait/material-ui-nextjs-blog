@@ -11,7 +11,11 @@ const NavLayout = ({ children }) => {
       <CssBaseline />
 
       <Navbar />
-      <Container maxWidth="lg" direction="column">
+      <Container
+        maxWidth="lg"
+        direction="column"
+        // sx={{ minHeight: '100vh', display: 'flex' }}
+      >
         <Box
           sx={{
             // bgcolor: '#cfe8fc',

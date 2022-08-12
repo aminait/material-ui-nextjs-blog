@@ -41,6 +41,9 @@ export default function SearchOverlay({ setOpenSearchDrawer }) {
           autoFocus
           sx={{
             width: '400px',
+            '& .MuiOutlinedInput-root': {
+              font: 'caption',
+            },
           }}
           variant="outlined"
           InputProps={{

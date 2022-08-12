@@ -28,7 +28,7 @@ const Hero = () => {
               <Typography gutterBottom variant="h2">
                 {rc.hero.title}
               </Typography>
-              <Typography gutterBottom variant="h6">
+              <Typography gutterBottom variant="p">
                 {rc.hero.subtitle}
               </Typography>
             </Grid>

@@ -1,10 +1,10 @@
 ---
-title: 'Getting Started with NextJS'
+title: 'How to Efficiently Merge Pull Requests'
 date: '2022-10-16'
-picture: 'getting-started-nextjs.png'
-excerpt: NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.
+picture: 'how-to-efficiently-merge-pull-requests.webp'
+excerpt: Merging pull requests is always tricky. Here are steps to keep in mind when reviewing PRs.
 isFeatured: true
-tags: ['next-js', 'guide']
+tags: ['git', 'tutorial']
 ---
 
 NextJS is a **framework for ReactJS**.

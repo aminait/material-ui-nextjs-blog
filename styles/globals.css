@@ -1,3 +1,10 @@
+@font-face {
+  font-family: WhyteBlack;
+  src: url('/fonts/Whyte-Black.woff');
+  format: ('woff');
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;

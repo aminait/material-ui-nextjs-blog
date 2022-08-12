@@ -17,6 +17,7 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import SearchOverlay from './search-overlay';
 import { ThemeContext } from '../context/ThemeContext';
+import { useRouter } from 'next/router';
 
 const pages = [
   { name: 'Posts', link: '/posts' },
@@ -26,39 +27,75 @@ const pages = [
   { name: 'Contact', link: '/contact' },
 ];
 
+// const highlightStyles = {
+//   position: 'relative',
+//   margin: '0 0.5em',
+//   padding: '0 0.2em',
+
+//   // transition: 'transform 0.3s ease-in-out',
+//   '&:before': {
+//     content: '""',
+//     zIndex: -1,
+//     left: '-0.5em',
+//     top: '0.1em',
+//     borderWidth: '0.5em',
+//     borderStyle: 'solid',
+//     borderColor: '#00a5a3',
+//     position: 'absolute',
+//     width: 'calc(100% - 0.5em)',
+//     borderLeftColor: 'transparent',
+//     transition: 'all 1s ease-out',
+//   },
+//   '&:after': {
+//     content: '""',
+//     zIndex: -1,
+//     right: '0.5rem',
+//     top: '0.1em',
+//     borderWidth: '0.5em',
+//     borderStyle: 'solid',
+//     borderColor: '#00a5a3',
+//     position: 'absolute',
+//     borderTopColor: 'transparent',
+//     borderBottomColor: 'transparent',
+//     borderLeftColor: 'transparent',
+//     transform: 'rotate(180deg)',
+//     transformOrigin: 'center right',
+//   },
+// };
+
 const highlightStyles = {
-  position: 'relative',
-  margin: '0 0.5em',
-  padding: '0 0.2em',
   '&:before': {
-    content: '',
+    content: '""',
     zIndex: -1,
-    left: '-0.5em',
-    top: '0.1em',
-    borderWidth: '0.5em',
+    right: '0.1em',
+    // top: '-0.2em',
+    borderWidth: '0.2em',
     borderStyle: 'solid',
-    borderColor: 'orange',
+    borderColor: '#00a5a3',
     position: 'absolute',
-    width: 'calc(100% - 0.5em)',
-    borderLeftColor: 'transparent',
-  },
-  '&:after': {
-    content: '',
-    zIndex: -1,
-    right: 0,
-    top: '0.1em',
-    borderWidth: '0.5em',
-    borderStyle: 'solid',
-    borderColor: 'orange',
-    position: 'absolute',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderLeftColor: 'transparent',
-    transform: 'rotate(180deg)',
-    transformOrigin: 'center right',
+    borderRadius: '50px',
+    width: '0.2rem',
+    // borderLeftColor: 'transparent',
+    transition: 'all 1s ease-out',
   },
 };
 
+const hoverStyles = {
+  '&:before': {
+    content: '""',
+    zIndex: -1,
+    right: '0.1em',
+    // top: '-0.2em',
+    borderWidth: '0.2em',
+    borderStyle: 'solid',
+    borderColor: '#c1e3e3',
+    position: 'absolute',
+    borderRadius: '50px',
+    width: '0.2rem',
+    // borderLeftColor: 'transparent',
+    transition: 'all 1s ease-out',
+  },
+};
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -66,6 +103,8 @@ const Navbar = () => {
   const [openSearchDrawer, setOpenSearchDrawer] = React.useState(false);
   console.log('Navbar -> openSearchDrawer', openSearchDrawer);
   const { theme, setTheme } = React.useContext(ThemeContext);
+
+  const path = useRouter().pathname;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -166,10 +205,12 @@ const Navbar = () => {
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography
-                    sx={{
-                      // color: `${(theme) => theme.palette.primary.main}`,
-                      color: 'red',
-                    }}
+                    sx={
+                      {
+                        // color: `${(theme) => theme.palette.primary.main}`,
+                        // color: 'red',
+                      }
+                    }
                     textAlign="center"
                   >
                     {page.name}
@@ -207,6 +248,11 @@ const Navbar = () => {
                   my: 2,
                   display: 'block',
                   color: theme === 'light' ? 'black' : 'white',
+                  fontSize: '18px',
+                  '&:hover': {
+                    ...hoverStyles,
+                  },
+                  ...(path === page.link && highlightStyles),
                   // color: 'black',
                 }}
               >

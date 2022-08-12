@@ -72,7 +72,7 @@ const ContactPage = () => {
       <Grid container component="div">
         <CssBaseline />
         <Image
-          src={'/contact-illustration.png'}
+          src={'/contact-illustration.svg'}
           alt="contact-illustration"
           width={600}
           height={300}
