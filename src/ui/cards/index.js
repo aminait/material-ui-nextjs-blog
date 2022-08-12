@@ -83,7 +83,7 @@ const CardPost = (props) => {
               <Stack direction="row" spacing={1} sx={{ marginBottom: '1rem' }}>
                 {tags.map((tag, i) => (
                   <NextLink
-                    href={`/tags/${convertToSlug(tag)}`}
+                    href={`/posts?tag=${convertToSlug(tag)}`}
                     passHref
                     key={i}
                   >

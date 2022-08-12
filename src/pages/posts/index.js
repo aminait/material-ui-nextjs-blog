@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavLayout from '../../layout/navLayout';
 import { getAllPosts } from '../../lib/posts-util';
-import { Grid, Typography, Divider, Stack } from '@mui/material';
+import { Grid, Typography, Divider, Stack, Chip } from '@mui/material';
 import CardPost from '../../ui/cards';
 import PostsList from '../../components/posts/posts-list';
 import { useResponsive } from '../../hooks/useResponsive';
@@ -15,7 +15,7 @@ const PostsPage = (props) => {
   const [postsData, setPostsData] = useState([]);
   const router = useRouter();
   console.log('PostDetailsHeader -> router', router);
-  const { search } = router.query;
+  const { search, tag } = router.query;
   // useDocumentTitle('Guide - A');
   console.log(
     '-----------------------------------------------------PostsPage -> search',
@@ -33,7 +33,14 @@ const PostsPage = (props) => {
       setPostsData(posts);
       setLoading(false);
     }
-  }, [posts, search]);
+
+    if (tag) {
+      const filteredPosts = posts.filter((post) => {
+        return post.tags.includes(tag);
+      });
+      setPostsData(filteredPosts);
+    }
+  }, [posts, search, tag]);
   return (
     <>
       <Stack direction="column">
@@ -42,7 +49,32 @@ const PostsPage = (props) => {
             {rc.posts.title}
           </Typography>
         </NextLink>
-        <Typography variant="p">{rc.posts.subtitle}</Typography>
+        <Typography variant="p">
+          {tag ? (
+            <>
+              {'Posts tagged '}
+              <Chip
+                sx={{
+                  '& .MuiChip-root': {
+                    borderRadius: '2px',
+                  },
+                  '& .MuiChip-label': {
+                    textAlign: 'center',
+                    lineHeight: '1.9rem',
+                    // fontSize: '4rem',
+                  },
+                  margin: '0.5rem',
+                }}
+                label={`${tag}`}
+
+                // onDelete={handleDelete}
+                // sx={{ width: '250px' }}
+              />
+            </>
+          ) : (
+            rc.posts.subtitle
+          )}
+        </Typography>
       </Stack>
       <Divider
         variant="middle"
