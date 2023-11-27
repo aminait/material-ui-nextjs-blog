@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.3",
-    "firebase-admin": "^10.0.2",
+    "firebase-admin": "^10.3.0",
     "gray-matter": "^4.0.3",
     "next": "12.1.0",
     "prop-types": "^15.8.1",
